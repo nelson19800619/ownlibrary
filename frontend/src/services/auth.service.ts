@@ -1,21 +1,19 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_API_URL
-  ? import.meta.env.VITE_API_URL.replace('/api', '/auth')
-  : '/auth';
+const API_URL = import.meta.env.VITE_API_URL || 'https://web-production-18137.up.railway.app';
 
-const authApi = axios.create({ baseURL });
+const authApi = axios.create({ baseURL: API_URL });
 
-export const login = (email: string, password: string) =>
-  authApi.post<{ token: string; user: { id: string; name: string; email: string; role: string } }>(
-    '/login',
-    { email, password }
-  );
+export const login = (username: string, password: string, client_id: string, client_secret: string) => {
+  const params = new URLSearchParams();
+  params.append('username', username);
+  params.append('password', password);
+  params.append('client_id', client_id);
+  params.append('client_secret', client_secret);
+  return authApi.post('/usuarios/login', params);
+};
 
-export const register = (data: { name: string; email: string; password: string; role?: string }) =>
-  authApi.post('/register', data);
+export const registro = (nombre: string, email: string, password: string) =>
+  authApi.post('/usuarios/registro', { nombre, email, password });
 
-export const getMe = (token: string) =>
-  authApi.get<{ id: string; name: string; email: string; role: string }>('/me', {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const miPerfil = () => authApi.get('/usuarios/yo');
