@@ -1,0 +1,96 @@
+{
+  "testCases": [
+    {
+      "id": "LOGIN_001",
+      "title": "User login with valid credentials",
+      "description": "Test successful login with admin credentials",
+      "steps": [
+        {
+          "action": "navigate",
+          "target": "http://localhost:5174"
+        },
+        {
+          "action": "fill",
+          "target": "email",
+          "value": "admin@library.com"
+        },
+        {
+          "action": "fill",
+          "target": "password",
+          "value": "admin123"
+        },
+        {
+          "action": "click",
+          "target": "login-button"
+        }
+      ],
+      "expectedResult": "User should be redirected to dashboard"
+    },
+    {
+      "id": "BOOKS_001",
+      "title": "View books list",
+      "description": "Test viewing all books in the system",
+      "steps": [
+        {
+          "action": "navigate",
+          "target": "http://localhost:5174/books"
+        }
+      ],
+      "expectedResult": "Books table should display with all available books"
+    },
+    {
+      "id": "BOOKS_002",
+      "title": "Create a new book",
+      "description": "Test creating a new book entry",
+      "steps": [
+        {
+          "action": "navigate",
+          "target": "http://localhost:5174/books"
+        },
+        {
+          "action": "click",
+          "target": "create-book-button"
+        },
+        {
+          "action": "fill",
+          "target": "book-title",
+          "value": "Test Book Title"
+        },
+        {
+          "action": "fill",
+          "target": "book-author",
+          "value": "Test Author"
+        },
+        {
+          "action": "click",
+          "target": "save-button"
+        }
+      ],
+      "expectedResult": "New book should appear in the list"
+    },
+    {
+      "id": "USERS_001",
+      "title": "View users list (admin only)",
+      "description": "Test accessing users management page",
+      "steps": [
+        {
+          "action": "navigate",
+          "target": "http://localhost:5174/users"
+        }
+      ],
+      "expectedResult": "Users table should display"
+    },
+    {
+      "id": "ARTICLES_001",
+      "title": "View articles list",
+      "description": "Test viewing all articles",
+      "steps": [
+        {
+          "action": "navigate",
+          "target": "http://localhost:5174/articles"
+        }
+      ],
+      "expectedResult": "Articles table should display"
+    }
+  ]
+}

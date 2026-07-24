@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  LIBRARIAN
+  READER
+}
+
+enum LoanStatus {
+  ACTIVE
+  RETURNED
+  OVERDUE
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(READER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  loans     Loan[]
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  books    Book[]
+  articles Article[]
+}
+
+model Book {
+  id          String    @id @default(cuid())
+  title       String
+  author      String
+  isbn        String?   @unique
+  description String?
+  quantity    Int       @default(1)
+  available   Int       @default(1)
+  publishedAt DateTime?
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  loans       Loan[]
+}
+
+model Article {
+  id          String    @id @default(cuid())
+  title       String
+  author      String
+  journal     String?
+  doi         String?   @unique
+  description String?
+  publishedAt DateTime?
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Loan {
+  id         String     @id @default(cuid())
+  userId     String
+  bookId     String
+  status     LoanStatus @default(ACTIVE)
+  loanedAt   DateTime   @default(now())
+  dueDate    DateTime
+  returnedAt DateTime?
+  user       User       @relation(fields: [userId], references: [id])
+  book       Book       @relation(fields: [bookId], references: [id])
+}

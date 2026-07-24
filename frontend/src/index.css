@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --color-espresso: #1c1410;
+  --color-espresso-light: #2d2018;
+  --color-ivory: #f7f3ee;
+  --color-linen: #e8ddd2;
+  --color-mahogany: #8b5e3c;
+  --color-mahogany-dark: #6e4a2e;
+  --color-gold: #d4a96a;
+  --color-gold-light: #f0d9b0;
+  --color-parchment: #c4b5a0;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+}
+
+body {
+  margin: 0;
+}
+
+/* Typography support for serif fonts */
+.font-serif {
+  font-family: Georgia, serif;
+}

@@ -1,0 +1,1 @@
+DELETE FROM "Book" WHERE isbn LIKE 'TEST-%' OR isbn LIKE 'UPDATE-%' OR isbn LIKE 'DELETE-%';

@@ -1,0 +1,1 @@
+UPDATE "Book" SET available = quantity WHERE isbn LIKE 'TEST-%';

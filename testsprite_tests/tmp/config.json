@@ -1,0 +1,17 @@
+{
+  "status": "init",
+  "scope": "codebase",
+  "type": "frontend",
+  "localEndpoint": "http://localhost:5174/",
+  "serverPort": 51253,
+  "executionArgs": {
+    "projectName": "ownlibrary",
+    "projectPath": "d:\\GIT-DEVOPS\\vscode\\web\\ownlibrary",
+    "testIds": [],
+    "additionalInstruction": "Test the library management system: login flow, book CRUD operations, user management, and loan operations. Focus on critical user journeys.",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-MLZfUhaz-3Fg4L42607LWD-Prhm7VqU9_glN256Mj35UmOmkw2HejHq0SUPJOzcxa8BlQqlWIK7g7YquzmF4gqX0d8QFWQ-8S-RZl8l9zgQrQRpwXUoCH3zPK6L7dENexio"
+    }
+  }
+}
