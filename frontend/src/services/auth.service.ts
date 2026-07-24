@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const authApi = axios.create({ baseURL: '/auth' });
+const baseURL = import.meta.env.VITE_API_URL
+  ? import.meta.env.VITE_API_URL.replace('/api', '/auth')
+  : '/auth';
+
+const authApi = axios.create({ baseURL });
 
 export const login = (email: string, password: string) =>
   authApi.post<{ token: string; user: { id: string; name: string; email: string; role: string } }>(
